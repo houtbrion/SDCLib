@@ -1,0 +1,96 @@
+#ifndef __SIMPLE_DEVICE_CONTROL_H__
+#define __SIMPLE_DEVICE_CONTROL_H__
+#include <Arduino.h>
+
+#define SIMPLE_DEVICE_CONTROL_SUBID_MAX       0xFE
+#define SIMPLE_DEVICE_CONTROL_SUBID_ALL       0xFF
+#define SIMPLE_DEVICE_CONTROL_SUBID_DIMENSION 3
+
+#define SIMPLE_DEVICE_CONTROL_UNSUPPORTED -1
+#define SIMPLE_DEVICE_CONTROL_FAIL        1
+#define SIMPLE_DEVICE_CONTROL_SUCCESS     0
+
+typedef enum {
+  SDC_DEVICE_CATEGORY_LED   = (0)
+} device_category_t;
+
+typedef enum {
+  SDC_DEVICE_TYPE_SINGLE_MONO_LED   = (0),
+  SDC_DEVICE_TYPE_WS281X            = (1),
+  SDC_DEVICE_TYPE_GROVE_LED_BAR     = (2),
+  SDC_DEVICE_TYPE_GROVE_CIRCULAR_LED = (3)
+} device_type_t;
+
+typedef struct {
+  uint8_t red;
+  uint8_t green;
+  uint8_t blue;
+} rgb_t;
+
+typedef struct {
+  uint8_t red;
+  uint8_t green;
+  uint8_t blue;
+  uint8_t alpha;
+} rgba_t;
+
+typedef union {
+  rgb_t   rgb;
+  rgba_t  rgba;
+} color_t;
+
+typedef struct {
+  bool      OnOff;
+  color_t   color;
+  uint32_t  brightness;
+} ledState_t;
+
+/*
+typedef union {
+  ledState_t ledState;
+} deviceState_t;
+*/
+
+typedef struct {
+  uint16_t x;
+  uint16_t y;
+  uint16_t z;
+} device_subid_t;
+
+typedef struct {
+  // 負 : 機能がない
+  // 0  : 全部のLEDに同じ値しかセットできない
+  // 1  : 個別の設定が可能
+  // 2  : apiで全体にまとめて設定ができる
+  int8_t Off;         // LEDのOFFのサポート状況
+  int8_t set;         // 個別にSetできるか，一括Setができるか
+  int8_t apply;       // ApplyがSetと独立しているか否か，個別にSetできるか，一括Setができるか
+  int8_t brightness;  // 個別にSetできるか，一括Setができるか
+  int8_t brightnessDeps; // brightnessの最大値(2進数のなんビットか?)
+  uint8_t color;          // 0 : モノクロ, 1 : RGB , 2 : RGBA  (その他はいまのところ未定義)
+} led_type_t;
+
+typedef struct {
+  int32_t type;
+  int32_t version;
+  int32_t device_id;
+  int32_t category;
+  //int32_t min_delay;
+  //int32_t init_delay;
+  union{
+    led_type_t ledType;
+  };
+} device_info_t;
+
+class SimpuleDeviceControl {
+public:
+  SimpuleDeviceControl() {}
+  virtual ~SimpuleDeviceControl() {}
+  /*
+  virtual int GetState(device_subid_t subID, deviceState_t * state);
+  virtual int SetState(device_subid_t subID, deviceState_t state);
+  virtual int ApplyState(device_subid_t subID);
+  */
+};
+
+#endif /* __SIMPLE_DEVICE_CONTROL_H__ */

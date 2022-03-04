@@ -1,6 +1,6 @@
 #ifndef __SDC_LED_H__
 #define __SDC_LED_H__
-#include "SimpleDeviceControl.h"
+
 
 #ifndef SIMPLE_DEVICE_CONTROL_DEV_ID_MAX
 #define SIMPLE_DEVICE_CONTROL_DEV_ID_MAX       0x1
@@ -10,6 +10,7 @@
 #define SIMPLE_DEVICE_CONTROL_DEV_ID_ALL       0xFF
 #endif /* SIMPLE_DEVICE_CONTROL_DEV_ID_ALL */
 
+#include "SimpleDeviceControl.h"
 
 class SDC_Led : public SimpuleDeviceControl {
 public:

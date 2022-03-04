@@ -20,13 +20,31 @@ SDC_ToneDevice tone_device(SPEAKER_PIN);
 toneState_t toneState;
 
 void setToneData() {
-  toneState.data_size=2;
+  toneState.data_size=8;
   toneState.freq[0]=NOTE_C4;
-  toneState.freq[1]=NOTE_E4;
+  toneState.freq[1]=NOTE_D4;
+  toneState.freq[2]=NOTE_E4;
+  toneState.freq[3]=NOTE_F4;
+  toneState.freq[4]=NOTE_G4;
+  toneState.freq[5]=NOTE_A4;
+  toneState.freq[6]=NOTE_B4;
+  toneState.freq[7]=NOTE_C5;
   toneState.duration[0]=DURATION;
   toneState.duration[1]=DURATION;
+  toneState.duration[2]=DURATION;
+  toneState.duration[3]=DURATION;
+  toneState.duration[4]=DURATION;
+  toneState.duration[5]=DURATION;
+  toneState.duration[6]=DURATION;
+  toneState.duration[7]=DURATION;
   toneState.rest[0]=WAIT_TIME;
   toneState.rest[1]=WAIT_TIME;
+  toneState.rest[2]=WAIT_TIME;
+  toneState.rest[3]=WAIT_TIME;
+  toneState.rest[4]=WAIT_TIME;
+  toneState.rest[5]=WAIT_TIME;
+  toneState.rest[6]=WAIT_TIME;
+  toneState.rest[7]=WAIT_TIME;
 }
 
 void setup(){
@@ -38,12 +56,12 @@ void setup(){
   tone_device.begin();
   setToneData();
   Serial.println("setup done.");
+  Serial.println("play start.");
+  tone_device.SetState(&toneState,0);
+  Serial.println("play end.");
 }
 
 void loop()
 {
-  Serial.println("play start.");
-  tone_device.SetState(&toneState,0);
-  Serial.println("play end.");
-  delay(LOOP_WAIT_TIME);
+  //delay(LOOP_WAIT_TIME);
 }

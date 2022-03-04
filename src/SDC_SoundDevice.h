@@ -1,7 +1,7 @@
 #ifndef __SDC_SOUND_DEVICE_H__
 #define __SDC_SOUND_DEVICE_H__
 #include <Arduino.h>
-#include "SimpleDeviceControl.h"
+
 
 #define SDC_SOUND_DEVICE_VERSION 1
 
@@ -12,6 +12,8 @@
 #ifndef SIMPLE_DEVICE_CONTROL_DEV_ID_ALL
 #define SIMPLE_DEVICE_CONTROL_DEV_ID_ALL       0xFF
 #endif /* SIMPLE_DEVICE_CONTROL_DEV_ID_ALL */
+
+#include "SimpleDeviceControl.h"
 
 class SDC_SoundDevice : public SimpuleDeviceControl {
 public:

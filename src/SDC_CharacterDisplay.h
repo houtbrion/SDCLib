@@ -1,10 +1,12 @@
 #ifndef __SDC_CHARACTER_DISPLAY_H__
 #define __SDC_CHARACTER_DISPLAY_H__
 
-#include "SimpleDeviceControl.h"
+
 
 #define SIMPLE_DEVICE_CONTROL_DEV_ID_MAX       0x1
 #define SIMPLE_DEVICE_CONTROL_DEV_ID_ALL       0xFF
+
+#include "SimpleDeviceControl.h"
 
 class SDC_CharacterDisplay : public SimpuleDeviceControl {
 public:

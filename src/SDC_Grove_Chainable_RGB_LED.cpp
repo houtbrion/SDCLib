@@ -14,7 +14,9 @@ SDC_Grove_Chainable_RGB_Led::SDC_Grove_Chainable_RGB_Led(uint8_t _clk_pin, uint8
 // 0  : 全部のLEDに同じ値しかセットできない
 // 1  : 個別の設定が可能
 // 2  : apiで全体にまとめて設定ができる
-void SDC_Grove_Chainable_RGB_Led::getDeviceInfo(device_info_t * info, int32_t num){
+int SDC_Grove_Chainable_RGB_Led::getDeviceInfo(device_info_t * info, int32_t num){
+  if (num >= devNum) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
+  if (info==NULL) return SIMPLE_DEVICE_CONTROL_FAIL;
   info->type = SDC_DEVICE_TYPE_GROVE_CHAINABLE_RGB_LED;
   info->version = SDC_GROVE_CHAINALE_RGB_LED_VERSION;
   info->device_num = devNum;
@@ -23,17 +25,24 @@ void SDC_Grove_Chainable_RGB_Led::getDeviceInfo(device_info_t * info, int32_t nu
   info->ledType.apply = SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION; // setで適用してしまう
   info->ledType.brightnessDeps = 1; // 輝度の設定機能はなし(RGBで設定)
   info->ledType.color =2; // RGB指定フルカラー
+  return SIMPLE_DEVICE_CONTROL_SUCCESS;
 }
 
-bool SDC_Grove_Chainable_RGB_Led::begin(void){
+bool SDC_Grove_Chainable_RGB_Led::begin(int32_t num){
+  if (num > devNum) return false;
   led=new ChainableLED((byte) clk_pin, (byte) data_pin, (byte) devNum);
   return true;
 }
 
 int SDC_Grove_Chainable_RGB_Led::SetState(ledState_t *state, int32_t num) {
   if (state==NULL) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION;
-  if (num > devNum) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
+  if (num >= devNum) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
   led->setColorRGB((byte) num , (byte )state->color.rgb.red,(byte ) state->color.rgb.green, (byte ) state->color.rgb.blue);
   return SIMPLE_DEVICE_CONTROL_SUCCESS;
 }
 
+int SDC_Grove_Chainable_RGB_Led::GetState(ledState_t *state, int32_t num) {
+  if (num !=SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
+  if (state==NULL) return SIMPLE_DEVICE_CONTROL_FAIL;
+  return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION;
+}

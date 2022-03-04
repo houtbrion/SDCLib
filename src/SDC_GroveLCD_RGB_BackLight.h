@@ -1,13 +1,18 @@
 #ifndef __SDC_GROVELCD_RGB_BACKLIGHT_H__
 #define __SDC_GROVELCD_RGB_BACKLIGHT_H__
 
-#include "SDC_CharacterDisplay.h"
-#include <Wire.h>
-#include "rgb_lcd.h"
+
 
 #define SDC_GROVE_LCD_RGB_VERSION 1
 #define SDC_GROVE_LCD_RGB_LINES 2
 #define SDC_GROVE_LCD_RGB_COLUMNS 16
+
+#define SIMPLE_DEVICE_CONTROL_DEV_ID_MAX       0x1
+#define SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID   0x0
+
+#include "SDC_CharacterDisplay.h"
+#include <Wire.h>
+#include "rgb_lcd.h"
 
 typedef enum {
   GROVE_CHARACTER_DISPLAY_CURSOR_HOME      = (0),
@@ -44,13 +49,18 @@ typedef enum {
 
 class SDC_GroveLCD_RGB_BLackLight : public SDC_CharacterDisplay {
 public:
-  SDC_GroveLCD_RGB_BLackLight(int32_t deviceID = SIMPLE_DEVICE_CONTROL_DEV_ID_MAX);
-  bool  begin(uint8_t columns, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
-  int   SetState(character_display_state_t *state, int32_t num = SIMPLE_DEVICE_CONTROL_DEV_ID_MAX);
-  void  getDeviceInfo(device_info_t * info);
+  SDC_GroveLCD_RGB_BLackLight(uint8_t columns, uint8_t rows, uint8_t charsize = LCD_5x8DOTS, int32_t deviceID = SIMPLE_DEVICE_CONTROL_DEV_ID_MAX);
+  //bool  begin(uint8_t columns, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
+  bool  begin(int32_t num = SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID);
+  int   SetState(character_display_state_t *state, int32_t num = SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID);
+  int  getDeviceInfo(device_info_t * info, int32_t num = SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID);
+  int  GetState(character_display_state_t *state, int32_t num);
 private:
+  uint8_t columns;
+  uint8_t rows;
+  uint8_t charsize;
   character_display_state_t displayState;
-  SDC_CharacterDisplay _super;
+  //SDC_CharacterDisplay _super;
   rgb_lcd _grove;
   void testCreateChar(void);
 };

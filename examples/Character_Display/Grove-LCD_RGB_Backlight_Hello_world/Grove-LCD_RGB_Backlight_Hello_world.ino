@@ -4,7 +4,7 @@
 
 character_display_state_t state;
 
-SDC_GroveLCD_RGB_BLackLight lcd;
+SDC_GroveLCD_RGB_BLackLight lcd((uint8_t) 16, (uint8_t) 2, LCD_5x8DOTS);
 
 
 
@@ -28,7 +28,7 @@ void setup()
   }
   Serial.println("setup start.");
 
-  if (!lcd.begin((uint8_t) 16, (uint8_t) 2, LCD_5x8DOTS)) {
+  if (!lcd.begin()) {
     Serial.println("setup n digit led failure.");
     while (true) {
       ;

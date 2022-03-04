@@ -1,19 +1,149 @@
-  
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
+# SimpleDeviceControl.h
+device_category_t		KEYWORD1
+device_type_t			KEYWORD1
+rgb_t				KEYWORD1
+rgba_t				KEYWORD1
+color_t				KEYWORD1
+position_t			KEYWORD1
+custom_char_t			KEYWORD1
+backlight_rgb_t			KEYWORD1
+integer_pair_t			KEYWORD1
+uchar_int_pair_t		KEYWORD1
+uint_int_pair_t			KEYWORD1
+long_int_pair_t			KEYWORD1
+ulong_int_pair_t		KEYWORD1
+double_int_pair_t		KEYWORD1
+ledState_t			KEYWORD1
+digit_led_state_t		KEYWORD1
+character_display_state_t	KEYWORD1
+toneState_t			KEYWORD1
+device_subid_t			KEYWORD1
+led_type_t			KEYWORD1
+n_digit_led_type_t		KEYWORD1
+character_display_type_t	KEYWORD1
+tone_device_type_t		KEYWORD1
+device_info_t			KEYWORD1
+SimpuleDeviceControl		KEYWORD1
 
+# SDC_ToneDevice.h
+SDC_ToneDevice			KEYWORD1
 
+# SDC_TM1637.h
+SDC_TM1637			KEYWORD1
+
+# SDC_SoundDevice.h
+SDC_SoundDevice			KEYWORD1
+
+# SDC_SimpleLed.h
+SDC_SimpleLed			KEYWORD1
+
+# SDC_NeoPixel.h
+SDC_NeoPixel			KEYWORD1
+
+# SDC_n_Digit_LED.h
+SDC_n_Digit_Led			KEYWORD1
+
+# SDC_Led.h
+SDC_Led				KEYWORD1
+
+# SDC_GroveLCD_RGB_BackLight.h
+displayCommands_t		KEYWORD1
+SDC_GroveLCD_RGB_BLackLight	KEYWORD1
+
+# SDC_Grove_LED_Bar.h
+SDC_GroveLedBar			KEYWORD1
+
+# SDC_Grove_Chainable_RGB_LED.h
+SDC_Grove_Chainable_RGB_Led	KEYWORD1
+
+# SDC_CharacterDisplay.h
+SDC_CharacterDisplay		KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-
-
-
+begin		KEYWORD2
+SetState	KEYWORD2
+getDeviceInfo	KEYWORD2
+ApplyState	KEYWORD2
+GetState	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
+# SimpleDeviceControl.h
+SimpleDeviceControl.h				LITERAL1
+SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION	LITERAL1
+SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID	LITERAL1
+SIMPLE_DEVICE_CONTROL_FAIL			LITERAL1
+SIMPLE_DEVICE_CONTROL_SUCCESS			LITERAL1
+SDC_DEFAULT_DEVICE_NUMBER			LITERAL1
+TONE_ARRAY_SIZE					LITERAL1
+MAX_DIGITS					LITERAL1
+SDC_DEVICE_CATEGORY_LED				LITERAL1
+SDC_DEVICE_CATEGORY_N_DIGIT_LED			LITERAL1
+SDC_DEVICE_CATEGORY_CHARACTER_DISPLAY		LITERAL1
+SDC_DEVICE_CATEGORY_SOUND_DEVICE		LITERAL1
+SDC_DEVICE_TYPE_SINGLE_MONO_LED			LITERAL1
+SDC_DEVICE_TYPE_WS281X				LITERAL1
+SDC_DEVICE_TYPE_GROVE_LED_BAR			LITERAL1
+SDC_DEVICE_TYPE_GROVE_CIRCULAR_LED		LITERAL1
+SDC_DEVICE_TYPE_TM1637				LITERAL1
+SDC_DEVICE_TYPE_16x2_CHRACTER_DISPLAY		LITERAL1
+SDC_DEVICE_TYPE_GROVE_CHAINABLE_RGB_LED		LITERAL1
+SDC_DEVICE_TYPE_TONE_DEVICE			LITERAL1
 
+# SDC_ToneDevice.h
+SDC_ToneDevice.h				LITERAL1
+SDC_TONE_DEVICE_VERSION				LITERAL1
+SIMPLE_DEVICE_CONTROL_DEV_ID_MAX		LITERAL1
+
+# SDC_TM1637.h
+SDC_TM1637.h					LITERAL1
+ON						LITERAL1
+OFF						LITERAL1
+MAX_SYMBOLS					LITERAL1
+SDC_TM1637_VERSION				LITERAL1
+TM1637_DEFAULT_BRIGHTNESS			LITERAL1
+BRIGHT_TYPICAL					LITERAL1
+
+# SDC_SoundDevice.h
+SDC_SoundDevice.h				LITERAL1
+SDC_SOUND_DEVICE_VERSION			LITERAL1
+
+# SDC_SimpleLed.h
+SDC_SimpleLed.h					LITERAL1
+SDC_SIMPLE_LED_VERSION				LITERAL1
+
+# SDC_NeoPixel.h
+SDC_NeoPixel.h					LITERAL1
+SIMPLE_DEVICE_CONTROL_DEV_ID_MAX		LITERAL1
+SDC_NEO_PIXEL_VERSION				LITERAL1
+
+# SDC_n_Digit_LED.h
+SDC_n_Digit_LED.h				LITERAL1
+
+# SDC_Led.h
+SDC_Led.h					LITERAL1
+
+# SDC_GroveLCD_RGB_BackLight.h
+SDC_GroveLCD_RGB_BackLight.h			LITERAL1
+SDC_GROVE_LCD_RGB_VERSION			LITERAL1
+SDC_GROVE_LCD_RGB_LINES				LITERAL1
+SDC_GROVE_LCD_RGB_COLUMNS			LITERAL1
+
+# SDC_Grove_LED_Bar.h
+SDC_Grove_LED_Bar.h				LITERAL1
+SDC_GROVE_LED_BAR_VERSION			LITERAL1
+SDC_GROVE_LED_BAR_LED_MAX			LITERAL1
+
+# SDC_Grove_Chainable_RGB_LED.h
+SDC_Grove_Chainable_RGB_LED.h			LITERAL1
+SDC_GROVE_CHAINALE_RGB_LED_VERSION		LITERAL1
+
+# SDC_CharacterDisplay.h
+SDC_CharacterDisplay.h				LITERAL1
 

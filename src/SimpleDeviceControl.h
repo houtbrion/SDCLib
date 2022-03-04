@@ -8,13 +8,25 @@
 #define SIMPLE_DEVICE_CONTROL_FAIL                  0
 #define SIMPLE_DEVICE_CONTROL_SUCCESS               1
 
+#define MONO_LED 0
+#define RGB_LED  1
+#define RGBA_LED 2
+
 #define SDC_DEFAULT_DEVICE_NUMBER 1
+
+#ifndef SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID
+#define SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID   0x0
+#endif /* SIMPLE_DEVICE_CONTROL_DEFAULT_DEV_ID */
 
 #define TONE_ARRAY_SIZE 32
 
 #ifndef MAX_DIGITS
 #define MAX_DIGITS 8
 #endif /* MAX_DIGITS for n-digit led*/
+
+#ifndef SIMPLE_DEVICE_CONTROL_DEV_ID_MAX
+#define SIMPLE_DEVICE_CONTROL_DEV_ID_MAX 1
+#endif /* SIMPLE_DEVICE_CONTROL_DEV_ID_MAX */
 
 typedef enum {
   SDC_DEVICE_CATEGORY_LED               = (0),
@@ -100,7 +112,6 @@ typedef struct {
 } double_int_pair_t;
 
 typedef struct {
-  //bool      OnOff;
   color_t   color;
   uint8_t  brightness;
 } ledState_t;
@@ -206,6 +217,7 @@ class SimpuleDeviceControl {
 public:
   SimpuleDeviceControl() {}
   virtual ~SimpuleDeviceControl() {}
+  virtual int   ApplyState(int32_t num=SIMPLE_DEVICE_CONTROL_DEV_ID_MAX) {return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION;}
 };
 
 #endif /* __SIMPLE_DEVICE_CONTROL_H__ */

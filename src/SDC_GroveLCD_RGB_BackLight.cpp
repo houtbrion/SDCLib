@@ -1,19 +1,30 @@
 #include "SDC_GroveLCD_RGB_BackLight.h"
 
-SDC_GroveLCD_RGB_BLackLight::SDC_GroveLCD_RGB_BLackLight(int32_t deviceID) {}
-
-bool SDC_GroveLCD_RGB_BLackLight::begin(uint8_t columns, uint8_t rows, uint8_t charsize) {
-  switch(charsize) {
+SDC_GroveLCD_RGB_BLackLight::SDC_GroveLCD_RGB_BLackLight(uint8_t col, uint8_t row, uint8_t csize, int32_t deviceNum) {
+  if (SIMPLE_DEVICE_CONTROL_DEV_ID_MAX<deviceNum) return;
+  switch(csize) {
     case LCD_5x8DOTS:
     case LCD_5x10DOTS:
       break;
-    default: return false;
+    default: {
+      columns=0;
+      return;
+    }
   }
+  columns=col;
+  rows=row;
+  charsize=csize;
+}
+
+bool SDC_GroveLCD_RGB_BLackLight::begin(int32_t num) {
+  if (num >= SIMPLE_DEVICE_CONTROL_DEV_ID_MAX) return false;
+  if (columns==0) return false;
   _grove.begin(columns, rows, charsize);
   return true;
 }
 
 int SDC_GroveLCD_RGB_BLackLight::SetState(character_display_state_t *state, int32_t num) {
+  if (num >= SIMPLE_DEVICE_CONTROL_DEV_ID_MAX) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
   if (state==NULL) return SIMPLE_DEVICE_CONTROL_FAIL;
   switch(state->command) {
     case GROVE_CHARACTER_DISPLAY_CURSOR_HOME:_grove.home();return SIMPLE_DEVICE_CONTROL_SUCCESS;
@@ -53,7 +64,9 @@ int SDC_GroveLCD_RGB_BLackLight::SetState(character_display_state_t *state, int3
 // 0  : 全部のLEDに同じ値しかセットできない
 // 1  : 個別の設定が可能
 // 2  : apiで全体にまとめて設定ができる
-void SDC_GroveLCD_RGB_BLackLight::getDeviceInfo(device_info_t * info) {
+int SDC_GroveLCD_RGB_BLackLight::getDeviceInfo(device_info_t * info, int32_t num) {
+  if (num >= SIMPLE_DEVICE_CONTROL_DEV_ID_MAX) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
+  if (info==NULL) return SIMPLE_DEVICE_CONTROL_FAIL;
   info->type = SDC_DEVICE_TYPE_16x2_CHRACTER_DISPLAY;
   info->version = SDC_GROVE_LCD_RGB_VERSION;
   info->device_num = SIMPLE_DEVICE_CONTROL_DEV_ID_MAX;
@@ -63,4 +76,11 @@ void SDC_GroveLCD_RGB_BLackLight::getDeviceInfo(device_info_t * info) {
   info->characterDisplayType.columns=SDC_GROVE_LCD_RGB_COLUMNS;
   info->characterDisplayType.lines=SDC_GROVE_LCD_RGB_LINES;
   info->characterDisplayType.backLight=2; // バックライト 0: なし, 1:単色, 2:カラー
+  return SIMPLE_DEVICE_CONTROL_SUCCESS;
+}
+
+int  SDC_GroveLCD_RGB_BLackLight::GetState(character_display_state_t *state, int32_t num) {
+  if (num >= SIMPLE_DEVICE_CONTROL_DEV_ID_MAX) return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_DEV_ID;
+  if (state==NULL) return SIMPLE_DEVICE_CONTROL_FAIL;
+  return SIMPLE_DEVICE_CONTROL_UNSUPPORTED_FUNCTION;
 }

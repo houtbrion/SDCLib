@@ -28,7 +28,8 @@ void setup()
     pmw=PIN_TYPE_NO_PMW;
     Serial.println("PMW is not OK");
   }
-  led.begin(pmw);
+  led.config(pmw);
+  led.begin();
 }
 
 void pmwTest(){
